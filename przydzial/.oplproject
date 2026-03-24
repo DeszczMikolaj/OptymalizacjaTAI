@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ASCII"?><project>
+    	
+    <version>1.0</version>
+    	
+    <configs>
+        		
+        <config default="true" name="Konfiguracja2" category="opl">
+            			
+            <ref name="przydzial.mod" type="model">
+			</ref>
+            			
+            <ref name="values_10.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja20" category="opl">
+            			
+            <ref name="przydzial.mod" type="model">
+			</ref>
+            			
+            <ref name="values_20.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja30" category="opl">
+            			
+            <ref name="values_30.dat" type="data">
+			</ref>
+            			
+            <ref name="przydzial.mod" type="model">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja90" category="opl">
+            			
+            <ref name="values_90.dat" type="data">
+			</ref>
+            			
+            <ref name="przydzial.mod" type="model">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja40" category="opl">
+            			
+            <ref name="values_40.dat" type="data">
+			</ref>
+            			
+            <ref name="przydzial.mod" type="model">
+			</ref>
+            		
+        </config>
+        	
+    </configs>
+    	
+
+</project>
