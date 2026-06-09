@@ -54,7 +54,7 @@ class GeneticAlgorithm:
                 number_of_generations_without_improvement = 0
 
         print(f"Search stopped after {number_of_generations} generations")
-        return self.best_solution, self.best_objective_value
+        return self.best_solution, self.best_objective_value, number_of_generations
 
 
 
