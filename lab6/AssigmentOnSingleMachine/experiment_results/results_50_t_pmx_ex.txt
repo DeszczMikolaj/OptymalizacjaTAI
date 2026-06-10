@@ -1,201 +1,200 @@
-
 === Block 1: Selection operators ===
-Search stopped after 601 generations
-  [selection] 1/20  tournament  run 0  fitness=9515.0  t=4.84s
-Search stopped after 1011 generations
-  [selection] 2/20  tournament  run 1  fitness=9544.0  t=8.13s
-Search stopped after 1130 generations
-  [selection] 3/20  tournament  run 2  fitness=9678.0  t=9.04s
-Search stopped after 841 generations
-  [selection] 4/20  tournament  run 3  fitness=11168.0  t=6.82s
-Search stopped after 957 generations
-  [selection] 5/20  tournament  run 4  fitness=10207.0  t=7.63s
-Search stopped after 1959 generations
-  [selection] 6/20  tournament  run 5  fitness=10463.0  t=15.77s
-Search stopped after 1135 generations
-  [selection] 7/20  tournament  run 6  fitness=10898.0  t=9.15s
-Search stopped after 1108 generations
-  [selection] 8/20  tournament  run 7  fitness=8966.0  t=8.78s
-Search stopped after 961 generations
-  [selection] 9/20  tournament  run 8  fitness=9039.0  t=7.59s
-Search stopped after 570 generations
-  [selection] 10/20  tournament  run 9  fitness=11774.0  t=4.59s
-Search stopped after 1054 generations
-  [selection] 11/20  linear_rank  run 0  fitness=8025.0  t=1.20s
-Search stopped after 701 generations
-  [selection] 12/20  linear_rank  run 1  fitness=8025.0  t=0.81s
-Search stopped after 1144 generations
-  [selection] 13/20  linear_rank  run 2  fitness=7836.0  t=1.33s
-Search stopped after 1401 generations
-  [selection] 14/20  linear_rank  run 3  fitness=8169.0  t=1.61s
-Search stopped after 764 generations
-  [selection] 15/20  linear_rank  run 4  fitness=8420.0  t=0.89s
-Search stopped after 1456 generations
-  [selection] 16/20  linear_rank  run 5  fitness=8660.0  t=1.67s
-Search stopped after 721 generations
-  [selection] 17/20  linear_rank  run 6  fitness=8853.0  t=0.83s
+Search stopped after 827 generations
+  [selection] 1/20  tournament  run 0  fitness=9695.0  t=6.45s
+Search stopped after 828 generations
+  [selection] 2/20  tournament  run 1  fitness=8306.0  t=6.54s
+Search stopped after 778 generations
+  [selection] 3/20  tournament  run 2  fitness=11699.0  t=6.18s
+Search stopped after 567 generations
+  [selection] 4/20  tournament  run 3  fitness=12100.0  t=4.62s
+Search stopped after 579 generations
+  [selection] 5/20  tournament  run 4  fitness=11934.0  t=4.56s
+Search stopped after 1255 generations
+  [selection] 6/20  tournament  run 5  fitness=8338.0  t=9.97s
+Search stopped after 574 generations
+  [selection] 7/20  tournament  run 6  fitness=9668.0  t=4.54s
+Search stopped after 986 generations
+  [selection] 8/20  tournament  run 7  fitness=9744.0  t=7.76s
 Search stopped after 771 generations
-  [selection] 18/20  linear_rank  run 7  fitness=8362.0  t=0.87s
+  [selection] 9/20  tournament  run 8  fitness=10587.0  t=6.06s
+Search stopped after 575 generations
+  [selection] 10/20  tournament  run 9  fitness=11478.0  t=4.54s
 Search stopped after 644 generations
-  [selection] 19/20  linear_rank  run 8  fitness=8512.0  t=0.75s
-Search stopped after 754 generations
-  [selection] 20/20  linear_rank  run 9  fitness=8759.0  t=0.87s
+  [selection] 11/20  linear_rank  run 0  fitness=8454.0  t=0.74s
+Search stopped after 591 generations
+  [selection] 12/20  linear_rank  run 1  fitness=8025.0  t=0.67s
+Search stopped after 658 generations
+  [selection] 13/20  linear_rank  run 2  fitness=9278.0  t=0.75s
+Search stopped after 832 generations
+  [selection] 14/20  linear_rank  run 3  fitness=7998.0  t=0.95s
+Search stopped after 641 generations
+  [selection] 15/20  linear_rank  run 4  fitness=8588.0  t=0.73s
+Search stopped after 646 generations
+  [selection] 16/20  linear_rank  run 5  fitness=8025.0  t=0.74s
+Search stopped after 641 generations
+  [selection] 17/20  linear_rank  run 6  fitness=8650.0  t=0.73s
+Search stopped after 824 generations
+  [selection] 18/20  linear_rank  run 7  fitness=8025.0  t=0.94s
+Search stopped after 635 generations
+  [selection] 19/20  linear_rank  run 8  fitness=8488.0  t=0.72s
+Search stopped after 987 generations
+  [selection] 20/20  linear_rank  run 9  fitness=8037.0  t=1.12s
 
 === Block 2: Crossover operators ===
-Search stopped after 782 generations
-  [crossover] 1/30  ox  run 0  fitness=28291.0  t=6.87s
-Search stopped after 765 generations
-  [crossover] 2/30  ox  run 1  fitness=16876.0  t=6.73s
-Search stopped after 626 generations
-  [crossover] 3/30  ox  run 2  fitness=17467.0  t=5.38s
-Search stopped after 743 generations
-  [crossover] 4/30  ox  run 3  fitness=14730.0  t=6.52s
-Search stopped after 797 generations
-  [crossover] 5/30  ox  run 4  fitness=20075.0  t=6.89s
-Search stopped after 858 generations
-  [crossover] 6/30  ox  run 5  fitness=22043.0  t=7.49s
-Search stopped after 574 generations
-  [crossover] 7/30  ox  run 6  fitness=24848.0  t=4.91s
-Search stopped after 1582 generations
-  [crossover] 8/30  ox  run 7  fitness=16108.0  t=13.69s
-Search stopped after 750 generations
-  [crossover] 9/30  ox  run 8  fitness=16182.0  t=6.45s
-Search stopped after 803 generations
-  [crossover] 10/30  ox  run 9  fitness=10701.0  t=7.01s
-Search stopped after 1612 generations
-  [crossover] 11/30  pmx  run 0  fitness=12140.0  t=12.90s
-Search stopped after 2290 generations
-  [crossover] 12/30  pmx  run 1  fitness=9089.0  t=18.21s
-Search stopped after 986 generations
-  [crossover] 13/30  pmx  run 2  fitness=12624.0  t=7.83s
-Search stopped after 1264 generations
-  [crossover] 14/30  pmx  run 3  fitness=12467.0  t=10.12s
-Search stopped after 1516 generations
-  [crossover] 15/30  pmx  run 4  fitness=9527.0  t=12.11s
-Search stopped after 665 generations
-  [crossover] 16/30  pmx  run 5  fitness=9722.0  t=5.26s
-Search stopped after 625 generations
-  [crossover] 17/30  pmx  run 6  fitness=9846.0  t=5.03s
-Search stopped after 1504 generations
-  [crossover] 18/30  pmx  run 7  fitness=10375.0  t=12.01s
-Search stopped after 580 generations
-  [crossover] 19/30  pmx  run 8  fitness=9518.0  t=4.59s
-Search stopped after 1468 generations
-  [crossover] 20/30  pmx  run 9  fitness=9110.0  t=11.87s
-Search stopped after 973 generations
-  [crossover] 21/30  ap  run 0  fitness=15522.0  t=8.28s
-Search stopped after 813 generations
-  [crossover] 22/30  ap  run 1  fitness=20088.0  t=7.16s
-Search stopped after 1373 generations
-  [crossover] 23/30  ap  run 2  fitness=15232.0  t=11.61s
-Search stopped after 1215 generations
-  [crossover] 24/30  ap  run 3  fitness=14116.0  t=10.31s
-Search stopped after 1215 generations
-  [crossover] 25/30  ap  run 4  fitness=16188.0  t=10.61s
-Search stopped after 697 generations
-  [crossover] 26/30  ap  run 5  fitness=21121.0  t=6.10s
-Search stopped after 578 generations
-  [crossover] 27/30  ap  run 6  fitness=29813.0  t=5.06s
-Search stopped after 1117 generations
-  [crossover] 28/30  ap  run 7  fitness=19837.0  t=9.71s
-Search stopped after 1034 generations
-  [crossover] 29/30  ap  run 8  fitness=18955.0  t=8.95s
-Search stopped after 1162 generations
-  [crossover] 30/30  ap  run 9  fitness=20192.0  t=10.01s
+Search stopped after 967 generations
+  [crossover] 1/30  ox  run 0  fitness=22689.0  t=8.45s
+Search stopped after 1016 generations
+  [crossover] 2/30  ox  run 1  fitness=11019.0  t=8.66s
+Search stopped after 722 generations
+  [crossover] 3/30  ox  run 2  fitness=15384.0  t=6.30s
+Search stopped after 1473 generations
+  [crossover] 4/30  ox  run 3  fitness=15671.0  t=12.62s
+Search stopped after 650 generations
+  [crossover] 5/30  ox  run 4  fitness=16851.0  t=5.53s
+Search stopped after 1107 generations
+  [crossover] 6/30  ox  run 5  fitness=19013.0  t=9.58s
+Search stopped after 749 generations
+  [crossover] 7/30  ox  run 6  fitness=14558.0  t=6.47s
+Search stopped after 1235 generations
+  [crossover] 8/30  ox  run 7  fitness=15914.0  t=10.56s
+Search stopped after 1248 generations
+  [crossover] 9/30  ox  run 8  fitness=16959.0  t=10.65s
+Search stopped after 892 generations
+  [crossover] 10/30  ox  run 9  fitness=16666.0  t=7.62s
+Search stopped after 683 generations
+  [crossover] 11/30  pmx  run 0  fitness=8707.0  t=5.35s
+Search stopped after 1343 generations
+  [crossover] 12/30  pmx  run 1  fitness=9930.0  t=10.53s
+Search stopped after 809 generations
+  [crossover] 13/30  pmx  run 2  fitness=9307.0  t=6.37s
+Search stopped after 1112 generations
+  [crossover] 14/30  pmx  run 3  fitness=8666.0  t=8.78s
+Search stopped after 1518 generations
+  [crossover] 15/30  pmx  run 4  fitness=11385.0  t=12.02s
+Search stopped after 588 generations
+  [crossover] 16/30  pmx  run 5  fitness=12364.0  t=4.74s
+Search stopped after 1037 generations
+  [crossover] 17/30  pmx  run 6  fitness=13902.0  t=8.30s
+Search stopped after 600 generations
+  [crossover] 18/30  pmx  run 7  fitness=10018.0  t=4.74s
+Search stopped after 869 generations
+  [crossover] 19/30  pmx  run 8  fitness=8319.0  t=6.86s
+Search stopped after 851 generations
+  [crossover] 20/30  pmx  run 9  fitness=9100.0  t=6.76s
+Search stopped after 998 generations
+  [crossover] 21/30  ap  run 0  fitness=12949.0  t=8.49s
+Search stopped after 757 generations
+  [crossover] 22/30  ap  run 1  fitness=23033.0  t=6.56s
+Search stopped after 673 generations
+  [crossover] 23/30  ap  run 2  fitness=21806.0  t=5.84s
+Search stopped after 1196 generations
+  [crossover] 24/30  ap  run 3  fitness=14454.0  t=10.19s
+Search stopped after 1007 generations
+  [crossover] 25/30  ap  run 4  fitness=19611.0  t=8.80s
+Search stopped after 676 generations
+  [crossover] 26/30  ap  run 5  fitness=11658.0  t=5.76s
+Search stopped after 810 generations
+  [crossover] 27/30  ap  run 6  fitness=12402.0  t=6.89s
+Search stopped after 957 generations
+  [crossover] 28/30  ap  run 7  fitness=21554.0  t=8.29s
+Search stopped after 833 generations
+  [crossover] 29/30  ap  run 8  fitness=14268.0  t=7.18s
+Search stopped after 710 generations
+  [crossover] 30/30  ap  run 9  fitness=17237.0  t=6.13s
 
 === Block 3: Mutation operators ===
-Search stopped after 1425 generations
-  [mutation] 1/40  displacement  run 0  fitness=7483.0  t=11.58s
-Search stopped after 752 generations
-  [mutation] 2/40  displacement  run 1  fitness=9001.0  t=6.10s
-Search stopped after 1257 generations
-  [mutation] 3/40  displacement  run 2  fitness=8055.0  t=10.15s
-Search stopped after 854 generations
-  [mutation] 4/40  displacement  run 3  fitness=7917.0  t=6.86s
-Search stopped after 1528 generations
-  [mutation] 5/40  displacement  run 4  fitness=8681.0  t=12.35s
-Search stopped after 2044 generations
-  [mutation] 6/40  displacement  run 5  fitness=8145.0  t=16.64s
-Search stopped after 1222 generations
-  [mutation] 7/40  displacement  run 6  fitness=8088.0  t=9.88s
-Search stopped after 2176 generations
-  [mutation] 8/40  displacement  run 7  fitness=7248.0  t=17.77s
-Search stopped after 1474 generations
-  [mutation] 9/40  displacement  run 8  fitness=8503.0  t=11.95s
-Search stopped after 1918 generations
-  [mutation] 10/40  displacement  run 9  fitness=7344.0  t=15.67s
-Search stopped after 540 generations
-  [mutation] 11/40  exchange  run 0  fitness=11686.0  t=4.31s
-Search stopped after 1006 generations
-  [mutation] 12/40  exchange  run 1  fitness=13642.0  t=8.00s
-Search stopped after 1367 generations
-  [mutation] 13/40  exchange  run 2  fitness=10024.0  t=10.85s
-Search stopped after 1825 generations
-  [mutation] 14/40  exchange  run 3  fitness=9522.0  t=14.51s
-Search stopped after 711 generations
-  [mutation] 15/40  exchange  run 4  fitness=10710.0  t=5.73s
-Search stopped after 1086 generations
-  [mutation] 16/40  exchange  run 5  fitness=11900.0  t=8.65s
-Search stopped after 1253 generations
-  [mutation] 17/40  exchange  run 6  fitness=9585.0  t=10.01s
-Search stopped after 1053 generations
-  [mutation] 18/40  exchange  run 7  fitness=8386.0  t=8.44s
-Search stopped after 560 generations
-  [mutation] 19/40  exchange  run 8  fitness=10345.0  t=4.47s
-Search stopped after 1063 generations
-  [mutation] 20/40  exchange  run 9  fitness=12394.0  t=8.59s
-Search stopped after 1477 generations
-  [mutation] 21/40  scramble  run 0  fitness=9114.0  t=12.07s
-Search stopped after 1560 generations
-  [mutation] 22/40  scramble  run 1  fitness=7894.0  t=12.74s
-Search stopped after 747 generations
-  [mutation] 23/40  scramble  run 2  fitness=8258.0  t=6.02s
-Search stopped after 1269 generations
-  [mutation] 24/40  scramble  run 3  fitness=8123.0  t=10.38s
-Search stopped after 1004 generations
-  [mutation] 25/40  scramble  run 4  fitness=8118.0  t=8.03s
-Search stopped after 1184 generations
-  [mutation] 26/40  scramble  run 5  fitness=8745.0  t=9.71s
-Search stopped after 1236 generations
-  [mutation] 27/40  scramble  run 6  fitness=10479.0  t=10.18s
-Search stopped after 1194 generations
-  [mutation] 28/40  scramble  run 7  fitness=8654.0  t=9.71s
-Search stopped after 738 generations
-  [mutation] 29/40  scramble  run 8  fitness=10650.0  t=6.06s
-Search stopped after 1178 generations
-  [mutation] 30/40  scramble  run 9  fitness=7881.0  t=9.77s
-Search stopped after 1287 generations
-  [mutation] 31/40  sim  run 0  fitness=8733.0  t=10.62s
-Search stopped after 954 generations
-  [mutation] 32/40  sim  run 1  fitness=8675.0  t=7.66s
-Search stopped after 1024 generations
-  [mutation] 33/40  sim  run 2  fitness=8025.0  t=8.23s
-Search stopped after 1470 generations
-  [mutation] 34/40  sim  run 3  fitness=7935.0  t=11.95s
-Search stopped after 1542 generations
-  [mutation] 35/40  sim  run 4  fitness=8932.0  t=12.60s
-Search stopped after 1678 generations
-  [mutation] 36/40  sim  run 5  fitness=7611.0  t=13.88s
-Search stopped after 1387 generations
-  [mutation] 37/40  sim  run 6  fitness=8035.0  t=11.11s
-Search stopped after 1245 generations
-  [mutation] 38/40  sim  run 7  fitness=8025.0  t=9.94s
-Search stopped after 1153 generations
-  [mutation] 39/40  sim  run 8  fitness=9995.0  t=9.43s
-Search stopped after 1405 generations
-  [mutation] 40/40  sim  run 9  fitness=8762.0  t=11.32s
+Search stopped after 1703 generations
+  [mutation] 1/40  displacement  run 0  fitness=7637.0  t=13.70s
+Search stopped after 1682 generations
+  [mutation] 2/40  displacement  run 1  fitness=7408.0  t=13.63s
+Search stopped after 1138 generations
+  [mutation] 3/40  displacement  run 2  fitness=7797.0  t=9.28s
+Search stopped after 1702 generations
+  [mutation] 4/40  displacement  run 3  fitness=9007.0  t=13.83s
+Search stopped after 887 generations
+  [mutation] 5/40  displacement  run 4  fitness=9328.0  t=7.24s
+Search stopped after 948 generations
+  [mutation] 6/40  displacement  run 5  fitness=9104.0  t=7.78s
+Search stopped after 1345 generations
+  [mutation] 7/40  displacement  run 6  fitness=7848.0  t=10.88s
+Search stopped after 624 generations
+  [mutation] 8/40  displacement  run 7  fitness=8244.0  t=5.11s
+Search stopped after 1414 generations
+  [mutation] 9/40  displacement  run 8  fitness=7898.0  t=11.61s
+Search stopped after 1261 generations
+  [mutation] 10/40  displacement  run 9  fitness=8164.0  t=10.20s
+Search stopped after 761 generations
+  [mutation] 11/40  exchange  run 0  fitness=9850.0  t=6.04s
+Search stopped after 1285 generations
+  [mutation] 12/40  exchange  run 1  fitness=8959.0  t=10.21s
+Search stopped after 992 generations
+  [mutation] 13/40  exchange  run 2  fitness=10966.0  t=7.76s
+Search stopped after 756 generations
+  [mutation] 14/40  exchange  run 3  fitness=9227.0  t=6.01s
+Search stopped after 571 generations
+  [mutation] 15/40  exchange  run 4  fitness=12415.0  t=4.50s
+Search stopped after 931 generations
+  [mutation] 16/40  exchange  run 5  fitness=10880.0  t=7.32s
+Search stopped after 907 generations
+  [mutation] 17/40  exchange  run 6  fitness=10443.0  t=7.30s
+Search stopped after 1527 generations
+  [mutation] 18/40  exchange  run 7  fitness=10363.0  t=12.07s
+Search stopped after 1525 generations
+  [mutation] 19/40  exchange  run 8  fitness=13086.0  t=12.29s
+Search stopped after 961 generations
+  [mutation] 20/40  exchange  run 9  fitness=10680.0  t=7.70s
+Search stopped after 887 generations
+  [mutation] 21/40  scramble  run 0  fitness=9772.0  t=7.32s
+Search stopped after 977 generations
+  [mutation] 22/40  scramble  run 1  fitness=9522.0  t=8.10s
+Search stopped after 1314 generations
+  [mutation] 23/40  scramble  run 2  fitness=9725.0  t=10.80s
+Search stopped after 1051 generations
+  [mutation] 24/40  scramble  run 3  fitness=8999.0  t=8.50s
+Search stopped after 1162 generations
+  [mutation] 25/40  scramble  run 4  fitness=7926.0  t=9.43s
+Search stopped after 788 generations
+  [mutation] 26/40  scramble  run 5  fitness=10977.0  t=6.41s
+Search stopped after 750 generations
+  [mutation] 27/40  scramble  run 6  fitness=8934.0  t=6.03s
+Search stopped after 537 generations
+  [mutation] 28/40  scramble  run 7  fitness=8262.0  t=4.38s
+Search stopped after 1499 generations
+  [mutation] 29/40  scramble  run 8  fitness=10492.0  t=12.47s
+Search stopped after 788 generations
+  [mutation] 30/40  scramble  run 9  fitness=8822.0  t=6.46s
+Search stopped after 1762 generations
+  [mutation] 31/40  sim  run 0  fitness=9815.0  t=14.38s
+Search stopped after 1874 generations
+  [mutation] 32/40  sim  run 1  fitness=8019.0  t=15.32s
+Search stopped after 1167 generations
+  [mutation] 33/40  sim  run 2  fitness=7836.0  t=9.39s
+Search stopped after 1091 generations
+  [mutation] 34/40  sim  run 3  fitness=10558.0  t=8.85s
+Search stopped after 1594 generations
+  [mutation] 35/40  sim  run 4  fitness=9500.0  t=15.17s
+Search stopped after 1262 generations
+  [mutation] 36/40  sim  run 5  fitness=9092.0  t=10.85s
+Search stopped after 1071 generations
+  [mutation] 37/40  sim  run 6  fitness=8375.0  t=8.87s
+Search stopped after 1450 generations
+  [mutation] 38/40  sim  run 7  fitness=8152.0  t=11.89s
+Search stopped after 1506 generations
+  [mutation] 39/40  sim  run 8  fitness=9003.0  t=12.25s
+Search stopped after 1768 generations
+  [mutation] 40/40  sim  run 9  fitness=8025.0  t=14.22s
 
-Results saved → ga_experiment_results.csv
+Results saved → ga_experiment_results1.csv
 
 ── Summary (mean ± std over runs) ──
                         mean_fitness  std_fitness  mean_time  std_time
 block     label                                                       
-crossover ap                 19106.4      4505.17       8.78      2.11
-          ox                 18732.1      5169.27       7.19      2.41
-          pmx                10441.8      1411.02       9.99      4.33
-mutation  displacement        8046.5       577.25      11.90      3.91
-          exchange           10819.4      1576.33       8.35      3.08
-          scramble            8791.6      1013.60       9.47      2.23
-          sim                 8472.8       694.81      10.67      1.93
-selection linear_rank         8362.1       342.28       1.08      0.35
-          tournament         10125.2       940.31       8.23      3.09
+crossover ap                 16897.2      4308.09       7.41      1.47
+          ox                 16472.4      3001.14       8.64      2.25
+          pmx                10169.8      1826.25       7.44      2.45
+mutation  displacement        8243.5       670.56      10.33      3.00
+          exchange           10686.9      1284.05       8.12      2.60
+          scramble            9343.1       947.84       7.99      2.41
+          sim                 8837.5       910.65      12.12      2.57
+selection linear_rank         8356.8       418.46       0.81      0.14
+          tournament         10354.9      1422.33       6.12      1.75
