@@ -1,4 +1,2 @@
-package PACKAGE_NAME;
-
-public record Solution() {
+public record Solution(int iterations, double distance) {
 }

@@ -21,7 +21,10 @@
  execute {
    	for (var i =1; i<= dimension; i++) {
    	   for (var j=1; j<=dimension; j++) {
-   	     write(assigments[i][j], " ");
+   	     if(assigments[i][j] == 1) {
+   	       write("Pracownik numer: ", i, " otrzymal zadanie numer: ", j, ". koszt zadania: ", values[i][j])
+   	     }
+   	     // write(assigments[i][j], " ");
    	   }
    	   writeln();
    	}

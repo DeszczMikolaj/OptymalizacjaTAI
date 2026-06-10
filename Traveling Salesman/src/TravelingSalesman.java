@@ -11,21 +11,28 @@ public class TravelingSalesman {
     private List<CityInPath> currentPath;
     private int currentPathLength;
 
-    private int iteration = 0;
-    private int iterationStop = 1000000;
-    private final int  initialTmp = 100;
-    private final double  alpha = 0.1;
+    private  double  initialTmp;
+    private double temperature;
 
     private final Function<Double, Double> temperatureFunction;
     private final int iterationsPerTmpChange;
-    private boolean progressCoefficientOn;
 
-    public TravelingSalesman(Map<Integer, City> cities, Function<Double, Double> temperatureFunction, Boolean progressCoefficientOn) {
+    private double reheatInitiationCoefficient;
+    private double reheatLevelCoefficient;
+    private int reheatAttempts;
+
+
+    public TravelingSalesman(Map<Integer, City> cities, Function<Double, Double> temperatureFunction, Double initialTmp, Double reheatInitiationCoefficient, Double reheatLevelCoefficient, int reheatAttempts) {
         this.cities = cities;
         indexRange = cities.size()-1;
         this.temperatureFunction = temperatureFunction;
-        this.iterationsPerTmpChange = cities.size() * 20;
-        this.progressCoefficientOn = progressCoefficientOn;
+        this.iterationsPerTmpChange = cities.size() * 10;
+        this.temperature = initialTmp;
+        this.initialTmp = initialTmp;
+
+        this.reheatAttempts = reheatAttempts;
+        this.reheatInitiationCoefficient = reheatInitiationCoefficient;
+        this.reheatLevelCoefficient = reheatLevelCoefficient;
         generateRandomFirstSolution();
 
     }
@@ -50,18 +57,26 @@ public class TravelingSalesman {
     }
 
 
-    public void solve() {
-        iteration = 0;
+    public Solution solve() {
+        int iteration = 0;
+        int reheatCounter = 0;
         int temperatureChangeIterator = 0;
-        double temperature = initialTmp * temperatureFunction.apply((double) (iteration+1) / (double) iterationStop);
-        while(iteration < iterationStop) {
+
+        while(temperature > 0.05) {
+ //         System.out.println(temperatureChangeIterator);
+
+            if(shouldReheat(reheatCounter)) {
+              //  System.out.println("Reheat");
+                reheat();
+                reheatCounter++;
+            }
+
             if(temperatureChangeIterator == iterationsPerTmpChange) {
-                if(progressCoefficientOn) {
-                    temperature = initialTmp * temperatureFunction.apply((double) (iteration+1) / (double) iterationStop);
-                }
-                else temperature = temperature * temperatureFunction.apply((double) (iteration+1) / (double) iterationStop);
+                temperature = temperatureFunction.apply(temperature);
+                //System.out.println(temperature);
                 temperatureChangeIterator = 0;
             }
+
             // Generating the indexes of connecting cities
             int randomCityIndexA = randomNumberGenerator.nextInt(0, indexRange);
             int randomCityIndexB = randomCityIndexA;
@@ -140,7 +155,7 @@ public class TravelingSalesman {
 
             int delta = newDistance - currentPathLength;
 
-            System.out.println("Threshold: " + Math.exp(-delta / temperature) + " delta: " + delta);
+//            System.out.println("Threshold: " + Math.exp(-delta / temperature) + " delta: " + delta);
             if(delta < 0 || Math.exp(-delta / temperature) >= Math.random()) {
                 // When the new solution is selected we need to reconstruct the path fully and update distances
                 //Copying unchanged part after selected City B
@@ -159,18 +174,28 @@ public class TravelingSalesman {
                     bestOrder = currentPath;
                 }
 
-                if (newDistance != calculateDistanceTEST(tmpCityInPath)) {
-                    //System.out.println("Distance mismatch, iteration " + iteration);
-                    return;
-                }
-                System.out.println(currentPathLength + " tmp: "+ temperature);
+//                if (newDistance != calculateDistanceTEST(tmpCityInPath)) {
+//                    //System.out.println("Distance mismatch, iteration " + iteration);
+//                    return;
+//                }
+//                System.out.println(currentPathLength + " tmp: "+ temperature);
             }
 
 
             iteration++;
             temperatureChangeIterator++;
         }
-        System.out.println(shortestPath);
+//        System.out.println(iteration);
+//        System.out.println(shortestPath);
+        return new Solution(iteration, shortestPath);
+    }
+
+    private void reheat() {
+        temperature = initialTmp * reheatLevelCoefficient;
+    }
+
+    private boolean shouldReheat(int reheatCounter) {
+        return (reheatCounter < reheatAttempts) && temperature < initialTmp * reheatInitiationCoefficient;
     }
 
 

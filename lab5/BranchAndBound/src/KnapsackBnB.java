@@ -81,7 +81,6 @@ public class KnapsackBnB {
                 lowerBoundSolution = currentNode.itemsInThePath;
             }
 
-
             // To avoid duplication.
             int currentNodeGlobalIndex = -1;
             if(currentNode.itemInNode != null) currentNodeGlobalIndex = itemsSorted.indexOf(currentNode.itemInNode);

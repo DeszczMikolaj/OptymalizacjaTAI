@@ -53,6 +53,46 @@
 			</ref>
             		
         </config>
+        		
+        <config default="false" name="Konfiguracja10" category="opl">
+            			
+            <ref name="values_10.dat" type="data">
+			</ref>
+            			
+            <ref name="przydzial.mod" type="model">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja15" category="opl">
+            			
+            <ref name="przydzial.mod" type="model">
+			</ref>
+            			
+            <ref name="values_15.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja25" category="opl">
+            			
+            <ref name="przydzial.mod" type="model">
+			</ref>
+            			
+            <ref name="values_25.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja35" category="opl">
+            			
+            <ref name="przydzial.mod" type="model">
+			</ref>
+            			
+            <ref name="values_35.dat" type="data">
+			</ref>
+            		
+        </config>
         	
     </configs>
     	
