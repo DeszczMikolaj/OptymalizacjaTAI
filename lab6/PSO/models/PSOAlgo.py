@@ -5,7 +5,11 @@ class PSOAlgo:
         self.max_iterations = 10000
         self.max_iterations_without_improvement = 200
 
-        self.
+        self.inertion = 0.5
+        self.local_gravity = 1.75
+        self.global_gravity = 1.75
+
+
 
     def solve(self):
         iteration = 0
@@ -15,8 +19,9 @@ class PSOAlgo:
 
         while(iteration < self.max_iterations and  iteration <self.max_iterations_without_improvement):
 
+            for
 
-
+    def.calculate_velocity
 
 
     def initilize_population(self):
