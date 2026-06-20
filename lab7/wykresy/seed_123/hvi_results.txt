@@ -1,0 +1,5 @@
+max_iter=  100  HV_avg=2789698.62  HV_std=621462.12
+max_iter=  200  HV_avg=3124010.56  HV_std=860269.53
+max_iter=  400  HV_avg=3023310.06  HV_std=649930.67
+max_iter=  800  HV_avg=3643204.52  HV_std=421887.79
+max_iter= 1600  HV_avg=3971189.70  HV_std=657904.55
