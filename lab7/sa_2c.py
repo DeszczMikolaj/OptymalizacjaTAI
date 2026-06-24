@@ -1,4 +1,5 @@
 import numpy as np
+import warnings
 from RandomNumberGenerator import RandomNumberGenerator
 import matplotlib.pyplot as plt
 
@@ -77,32 +78,40 @@ def max_lateness(comp_times: np.ndarray, deadlines: np.ndarray, permutation: lis
     last_machine = comp_times.shape[0] - 1
     n_jobs = len(deadlines)
 
-    tardiness = np.zeros(n_jobs)
+    latness = np.zeros(n_jobs)
     for k in range(n_jobs):
         job = permutation[k]
         completion = comp_times[last_machine, k]
         due_date = deadlines[job]
-        tardiness[k] = completion - due_date
+        latness[k] = completion - due_date
 
-    return np.max(tardiness)
+    return np.max(latness)
 
+def total_lateness(comp_times: np.ndarray, deadlines: np.ndarray, permutation: list[int]) -> int:
+    last_machine = comp_times.shape[0] - 1
+    n_jobs = len(deadlines)
+
+    lateness = 0
+    for k in range(n_jobs):
+        job = permutation[k]
+        completion = comp_times[last_machine, k]
+        due_date = deadlines[job]
+        lateness += completion - due_date
+
+    return lateness
 
 def evaluate(times, deadlines, solution):
-    """Wektor wartości kryteriów dla rozwiązania (oba minimalizujemy)."""
     ft = total_flowtime(times)
     mt = max_tardiness(times, deadlines, solution)
     ml = max_lateness(times, deadlines, solution)
+    tl = total_lateness( times, deadlines, solution)
 
     return {
         "total_flowtime": ft,
         "max_tardiness": mt,
-        "max lateness": ml
+        "max lateness": ml,
+        "total lateness": tl
     }
-
-
-def objective_values(obj):
-    return tuple(obj[key] for key in OBJECTIVE_KEYS)
-
 
 def dominates(obj1, obj2):
     """
@@ -298,14 +307,27 @@ def calculate_weights(times, deadlines, n_jobs, parameters_names, max_iterations
     for parameter_name, delta_info in parameter_deltas.items():
         delta = delta_info["delta"]
         if delta == 0:
-            raise ValueError(f"Nie mozna wyznaczyc wagi dla {parameter_name}: delta wynosi 0.")
-        weight[parameter_name] = 1 / delta
+            warnings.warn(
+                f"Nie mozna wyznaczyc wagi dla {parameter_name}: delta wynosi 0. "
+                "Przypisuje wage 0.",
+                RuntimeWarning,
+            )
+            weight[parameter_name] = 0
+        else:
+            weight[parameter_name] = 1 / delta
 
     if reference_parameter_name is not None:
         if not isinstance(reference_parameter_name, str):
             raise TypeError("Kryterium referencyjne musi byc pojedyncza nazwa parametru jako string.")
         if reference_parameter_name not in weight:
             raise ValueError(f"Nieznane kryterium referencyjne: {reference_parameter_name}.")
+        if weight[reference_parameter_name] == 0:
+            warnings.warn(
+                f"Nie mozna przeskalowac wag wzgledem {reference_parameter_name}: "
+                "waga referencyjna wynosi 0.",
+                RuntimeWarning,
+            )
+            return weight
         scale = 1 / weight[reference_parameter_name]
         weight = {
             parameter_name: parameter_weight * scale

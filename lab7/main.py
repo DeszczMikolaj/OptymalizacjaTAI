@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import numpy as np
 import matplotlib.pyplot as plt
 
 from sa_2c import (
@@ -95,58 +96,78 @@ def run_scalarization(log_to_console=False):
 
     parameter_names = ["total_flowtime", "max_tardiness", "max lateness"]
     reference_parameter_name = "total_flowtime"
+    scalarization_repeats = 100
 
 
-    fitness_values = []
+    avg_fitness_values = []
+    std_fitness_values = []
 
     for i, max_iter in enumerate(iters, start=1):
-        weights = calculate_weights(
-            times,
-            deadlines,
-            n_jobs,
-            parameter_names,
-            max_iter,
-            log_to_console=log_to_console,
-            reference_parameter_name=reference_parameter_name,
-        )
+        fitness_values = []
 
-        seed = i + 333
-        on_accept = None
+        for rep in range(scalarization_repeats):
+            seed = 333 + rep
+            should_log_run = log_to_console and max_iter == iters[-1] and rep == 0
 
-        if log_to_console and max_iter == iters[-1]:
-            def on_accept(iteration, solution, obj):
-                params = ", ".join(
-                    f"{parameter_name}={obj[parameter_name]}"
-                    for parameter_name in parameter_names
-                )
-                fitness = scalarized_value(obj, weights)
-                print(
-                    f"[SA scalarized accepted] "
-                    f"max_iter={max_iter}, "
-                    f"it={iteration}, "
-                    f"fitness={fitness}, "
-                    f"{params}"
-                )
+            weights = calculate_weights(
+                times,
+                deadlines,
+                n_jobs,
+                parameter_names,
+                max_iter,
+                seed=seed,
+                log_to_console=should_log_run,
+                reference_parameter_name=reference_parameter_name,
+            )
 
-        best, accepted_solutions = simulated_annealing_scalarized(
-            times,
-            deadlines,
-            n_jobs=n_jobs,
-            weight=weights,
-            max_iter=max_iter,
-            seed=seed,
-            on_accept=on_accept,
-        )
+            on_accept = None
 
-        solution, obj = best
-        score = scalarized_value(obj, weights)
-        fitness_values.append(score)
+            if should_log_run:
+                def on_accept(iteration, solution, obj):
+                    params = ", ".join(
+                        f"{parameter_name}={obj[parameter_name]}"
+                        for parameter_name in parameter_names
+                    )
+                    fitness = scalarized_value(obj, weights)
+                    print(
+                        f"[SA scalarized accepted] "
+                        f"max_iter={max_iter}, "
+                        f"rep={rep}, "
+                        f"it={iteration}, "
+                        f"fitness={fitness}, "
+                        f"{params}"
+                    )
+
+            best, accepted_solutions = simulated_annealing_scalarized(
+                times,
+                deadlines,
+                n_jobs=n_jobs,
+                weight=weights,
+                max_iter=max_iter,
+                seed=seed,
+                on_accept=on_accept,
+            )
+
+            solution, obj = best
+            score = scalarized_value(obj, weights)
+            fitness_values.append(score)
+
+        avg_fitness_values.append(float(np.mean(fitness_values)))
+        std_fitness_values.append(float(np.std(fitness_values)))
 
     fig, ax = plt.subplots(figsize=(8, 5))
-    ax.plot(iters, fitness_values, marker="o", linewidth=2, color="darkgreen")
+    ax.errorbar(
+        iters,
+        avg_fitness_values,
+        yerr=std_fitness_values,
+        marker="o",
+        capsize=4,
+        linewidth=2,
+        color="darkgreen",
+    )
     ax.set_xlabel("max_iter")
-    ax.set_ylabel("Wartość funkcji dopasowania")
-    ax.set_title("Skalaryzowana funkcja dopasowania vs liczba iteracji SA")
+    ax.set_ylabel("Średnia wartość funkcji dopasowania")
+    ax.set_title(f"Skalaryzowana funkcja dopasowania vs liczba iteracji SA ({scalarization_repeats} przebiegów)")
     ax.set_xscale("log", base=2)
     ax.set_xticks(iters)
     ax.set_xticklabels(iters)
