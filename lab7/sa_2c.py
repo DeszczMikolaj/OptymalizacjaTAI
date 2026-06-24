@@ -3,10 +3,6 @@ import warnings
 from RandomNumberGenerator import RandomNumberGenerator
 import matplotlib.pyplot as plt
 
-
-OBJECTIVE_KEYS = ("total_flowtime", "max_tardiness")
-
-
 def generator(n_jobs, seed):
     rng = RandomNumberGenerator(seed)
     p_times = np.zeros((3, n_jobs))
@@ -109,21 +105,18 @@ def evaluate(times, deadlines, solution):
     return {
         "total_flowtime": ft,
         "max_tardiness": mt,
-        "max lateness": ml,
-        "total lateness": tl
+        "max_lateness": ml,
+        "total_lateness": tl
     }
 
-def dominates(obj1, obj2):
+def dominates(obj1, obj2, criteria_names):
     """
     Czy obj1 dominuje obj2 w sensie Pareto (przy minimalizacji)?
     obj1 dominuje obj2 <=> obj1 nie jest gorszy w żadnym kryterium
                           oraz jest ściśle lepszy w co najmniej jednym.
     """
-
-    objective_keys_used = ("total_flowtime", "max_tardiness")
-
-    not_worse = all(obj1[key] <= obj2[key] for key in objective_keys_used)
-    strictly_better = any(obj1[key] < obj2[key] for key in objective_keys_used)
+    not_worse = all(obj1[key] <= obj2[key] for key in criteria_names)
+    strictly_better = any(obj1[key] < obj2[key] for key in criteria_names)
     return not_worse and strictly_better
 
 
@@ -131,12 +124,16 @@ def geometric_acceptance_probability(init_prob, it):
     return init_prob ** it
 
 
-def accept_pareto_solution(obj_x, obj_x_candidate, it, rng, init_prob):
-    if dominates(obj_x_candidate, obj_x):
-        return True
+class ParetoAcceptance:
+    def __init__(self, criteria_names):
+        self.criteria_names = tuple(criteria_names)
 
-    p = geometric_acceptance_probability(init_prob, it)
-    return rng.random() < p
+    def __call__(self, obj_x, obj_x_candidate, it, rng, init_prob):
+        if dominates(obj_x_candidate, obj_x, self.criteria_names):
+            return True
+
+        p = geometric_acceptance_probability(init_prob, it)
+        return rng.random() < p
 
 
 def scalarized_value(obj, weight):
@@ -191,13 +188,13 @@ def next_solution(solution, rng):
     return new_sol
 
 
-def pareto_front(P):
+def find_pareto_front(P, criteria_names):
     """Wyznacza front Pareto (rozwiązania niezdominowane) ze zbioru P."""
     front = []
     for i, (sol_i, obj_i) in enumerate(P):
         dominated = False
         for j, (sol_j, obj_j) in enumerate(P):
-            if i != j and dominates(obj_j, obj_i):
+            if i != j and dominates(obj_j, obj_i, criteria_names):
                 dominated = True
                 break
         if not dominated:
@@ -205,50 +202,52 @@ def pareto_front(P):
     return front
 
 
-def simulated_annealing(times, deadlines, n_jobs, max_iter=1000, init_prob=0.95, seed=None,
-                        acceptance_rule=None, on_accept=None):
+def simulated_annealing(times, deadlines, criteria_names, n_jobs, max_iter=1000, init_prob=0.95,
+                        seed=None, acceptance_rule=None, on_accept=None):
     rng = np.random.default_rng(seed)
+
     if acceptance_rule is None:
-        acceptance_rule = accept_pareto_solution
+        acceptance_rule = ParetoAcceptance(criteria_names)
 
-    P = []
+    pareto = []
 
-    it = 1
+    iteration = 1
 
     # Rozwiązanie początkowe (losowa permutacja zadań)
-    x = list(rng.permutation(n_jobs))
-    comp_times = compute_completion_times(times, x)
-    obj_x = evaluate(comp_times, deadlines, x)
-    P.append((x[:], obj_x))
+    job_order = list(rng.permutation(n_jobs))
+    comp_times = compute_completion_times(times, job_order)
+    solution_parameters = evaluate(comp_times, deadlines, job_order)
+    pareto.append((job_order[:], solution_parameters))
 
-    while it <= max_iter :
+    while iteration <= max_iter :
 
-        x_prime = next_solution(x, rng)
-        comp_times = compute_completion_times(times, x_prime)
-        obj_x_candidate = evaluate(comp_times, deadlines, x_prime)
+        job_order_candidate = next_solution(job_order, rng)
+        comp_times = compute_completion_times(times, job_order_candidate)
+        solution_parameters_candidate = evaluate(comp_times, deadlines, job_order_candidate)
 
-        if acceptance_rule(obj_x, obj_x_candidate, it, rng, init_prob):
-            x = x_prime
-            obj_x = obj_x_candidate
-            P.append((x[:], obj_x))
+        if acceptance_rule(solution_parameters, solution_parameters_candidate, iteration, rng, init_prob):
+            job_order = job_order_candidate
+            solution_parameters = solution_parameters_candidate
+            pareto.append((job_order[:], solution_parameters))
             if on_accept is not None:
-                on_accept(it, x[:], obj_x)
+                on_accept(iteration, job_order[:], solution_parameters)
 
         # 5.4 it <- it + 1
-        it += 1
+        iteration += 1
 
     # 6. Front Pareto F z P
-    F = pareto_front(P)
+    front_pareto = find_pareto_front(pareto, criteria_names)
 
-    return F, P
+    return front_pareto, pareto
 
 
-def simulated_annealing_scalarized(times, deadlines, n_jobs, weight, max_iter=1000,
+def simulated_annealing_scalarized(times, deadlines, parameter_names, n_jobs, weight, max_iter=1000,
                                    init_prob=0.95, seed=None, on_accept=None):
     acceptance_rule = make_scalarized_acceptance(weight)
     _, P = simulated_annealing(
         times,
         deadlines,
+        parameter_names,
         n_jobs,
         max_iter=max_iter,
         init_prob=init_prob,
@@ -270,6 +269,7 @@ def calculate_weights(times, deadlines, n_jobs, parameters_names, max_iterations
         _, accepted_solutions = simulated_annealing(
             times,
             deadlines,
+            parameters_names,
             n_jobs,
             max_iter=max_iterations,
             init_prob=init_prob,
@@ -380,25 +380,24 @@ def hypervolume_2d(front, ref_point):
     return hv
 
 
-def run_hvi_experiment(times, deadlines, n_jobs, max_iters_list, n_repeats=10,
+def run_hvi_experiment(times, deadlines, n_jobs, parameter_names, max_iters_list, n_repeats=10,
                         init_prob=0.97, nadir_factor=1.2):
   
     all_fronts = {}
-
     for max_iter in max_iters_list:
         fronts = []
         for rep in range(n_repeats):
-            F, P = simulated_annealing(times, deadlines, n_jobs,
+            front_pareto, pareto = simulated_annealing(times, deadlines,  parameter_names, n_jobs,
                                                max_iter=max_iter, init_prob=init_prob, seed=rep+333)
-            fronts.append(F)
+            fronts.append(front_pareto)
         all_fronts[max_iter] = fronts
         print(f"max_iter={max_iter}: zakończono {n_repeats} powtórzeń")
 
 
     worst_f1, worst_f2 = 0.0, 0.0
     for max_iter in max_iters_list:
-        for F in all_fronts[max_iter]:
-            for _, obj in F:
+        for front_pareto in all_fronts[max_iter]:
+            for _, obj in front_pareto:
                 f1 = obj["total_flowtime"]
                 f2 = obj["max_tardiness"]
                 worst_f1 = max(worst_f1, f1)

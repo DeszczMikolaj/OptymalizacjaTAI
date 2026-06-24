@@ -32,7 +32,14 @@ def run_pareto_2D():
 
     for i, max_iter in enumerate(iters, start=1):
         seed = i + 333
-        fp, p = simulated_annealing(times, deadlines, n_jobs=n_jobs, max_iter=max_iter, seed=seed)
+        fp, p = simulated_annealing(
+            times,
+            deadlines,
+            criteria_names=("total_flowtime", "max_tardiness"),
+            n_jobs=n_jobs,
+            max_iter=max_iter,
+            seed=seed,
+        )
         results.append(fp)
 
         fig, ax = plt.subplots(figsize=(9, 6))
@@ -85,7 +92,7 @@ def run_hvi():
     n_repeats, times, deadlines, n_jobs, iters, output_dir = get_setup()
 
     avg_hv, std_hv, ref_point = run_hvi_experiment(
-        times, deadlines, n_jobs, iters,
+        times, deadlines, n_jobs, ("total_flowtime", "max_tardiness"), iters,
         n_repeats=n_repeats, init_prob=0.97, nadir_factor=1.2
     )
 
@@ -94,7 +101,7 @@ def run_hvi():
 def run_scalarization(log_to_console=False):
     n_repeats, times, deadlines, n_jobs, iters, output_dir = get_setup()
 
-    parameter_names = ["total_flowtime", "max_tardiness", "max lateness"]
+    parameter_names = ("total_flowtime", "max_tardiness", "max_lateness")
     reference_parameter_name = "total_flowtime"
     scalarization_repeats = 100
 
@@ -141,6 +148,7 @@ def run_scalarization(log_to_console=False):
             best, accepted_solutions = simulated_annealing_scalarized(
                 times,
                 deadlines,
+                parameter_names,
                 n_jobs=n_jobs,
                 weight=weights,
                 max_iter=max_iter,
@@ -177,12 +185,31 @@ def run_scalarization(log_to_console=False):
     fig.savefig(output_dir / "scalarized_fitness.png")
     plt.close(fig)
 
+def run_pareto_4D():
+    n_repeats, times, deadlines, n_jobs, iters, output_dir = get_setup()
+    results = []
+
+    for i, max_iter in enumerate(iters, start=1):
+        seed = i + 54245
+        front_pareto, pareto = simulated_annealing(
+            times,
+            deadlines,
+            criteria_names=("total_flowtime", "max_tardiness","max_lateness", "total_lateness"),
+            n_jobs=n_jobs,
+            max_iter=max_iter,
+            seed=seed,
+        )
+        results.append(front_pareto)
+
+
+
 
 
 if __name__ == '__main__':
-    # run_pareto_2D()
-    # run_hvi()
-    run_scalarization(True)
+    #run_pareto_2D()
+    #run_hvi()
+    #run_scalarization(True)
+    run_pareto_4D()
 
 
 
